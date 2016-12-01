@@ -53,10 +53,11 @@ class WebsiteConfigurationLoader extends Loader
         }
 
         $websiteName = $this->getMatchingWebsite();
+        $routes = new RouteCollection();
 
         if (false !== $websiteName) {
+
             $websiteRouteConfiguration = $this->websitesConfiguration[$websiteName]['routes'];
-            $routes = new RouteCollection();
 
             foreach ($websiteRouteConfiguration as $routeName => $config) {
 
@@ -73,13 +74,11 @@ class WebsiteConfigurationLoader extends Loader
                 // add the new route to the route collection
                 $routes->add($routeName, $route);
             }
-
-            $this->loaded = true;
-
-            return $routes;
         }
 
-        return false;
+        $this->loaded = true;
+
+        return $routes;
     }
 
     public function supports($resource, $type = null)

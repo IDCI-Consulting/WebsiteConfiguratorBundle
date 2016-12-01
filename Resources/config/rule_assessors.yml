@@ -1,0 +1,7 @@
+services:
+
+    # Rule assessors list
+    idci_website_configurator.rule_assessor.request:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\RuleAssessor\RequestRuleAssessor
+        tags:
+            - { name: idci_website_configurator.rule_assessor, alias: request }

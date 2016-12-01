@@ -1,0 +1,48 @@
+services:
+
+    # Routing loader
+
+    idci_website_configurator.routing_loader:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\Routing\Loader\WebsiteConfigurationLoader
+        arguments:
+            - @idci_website_configurator.rule_assessor_manager
+            - @request_stack
+            - %idci_website_configurator.configuration.websites%
+        tags:
+            - { name: routing.loader }
+
+    # Rule assessor
+    idci_website_configurator.rule_assessor_registry:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\RuleAssessor\RuleAssessorRegistry
+
+    idci_website_configurator.rule_assessor_manager:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\RuleAssessor\RuleAssessorManager
+        arguments: [@idci_website_configurator.rule_assessor_registry]
+
+    # Website
+    idci_website_configurator.website_registry:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\Website\WebsiteRegistry
+
+    idci_website_configurator.website_manager:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\Website\WebsiteManager
+        arguments:
+            - @idci_website_configurator.website_registry
+            - @idci_website_configurator.rule_assessor_manager
+
+    idci_website_configurator.website:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\Website\Website
+        arguments: [null, null, null, null]
+        abstract: true
+
+    idci_website_configurator.event_subscriber.website:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\EventSubscriber\WebsiteEventSubscriber
+        arguments: [@idci_website_configurator.website_manager, @twig.loader]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    # Twig
+    idci_website_configurator.twig.website_extension:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\Twig\WebsiteTwigExtension
+        arguments: [@idci_website_configurator.website_manager]
+        tags:
+            - { name: twig.extension }

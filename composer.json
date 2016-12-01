@@ -1,0 +1,34 @@
+{
+  "name": "idci/website-configurator-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony2 bundle that easily allow to configure a symfony website according to some rules",
+  "keywords": ["http request", "theme", "twig", "customize", "routing"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gabriel Bondaz",
+      "email": "gabriel.bondaz@idci-consulting.fr",
+      "homepage": "http://www.idci-consulting.fr"
+    },
+    {
+      "name": "Baptiste Bouchereau",
+      "email": "baptiste.bouchereau@idci-consulting.fr",
+      "homepage": "http://www.idci-consulting.fr"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.9",
+    "symfony/symfony": "~2.3",
+    "twig/twig": "*",
+    "twig/extensions": "~1.0",
+    "doctrine/inflector": "~1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "3.7.*"
+  },
+  "autoload": {
+    "psr-0": { "IDCI\\Bundle\\WebsiteConfiguratorBundle": "" }
+  },
+  "target-dir": "IDCI/Bundle/WebsiteConfiguratorBundle",
+  "minimum-stability": "dev"
+}

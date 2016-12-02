@@ -61,8 +61,8 @@ class RequestRuleAssessor extends AbstractRuleAssessor
      */
     public function doMatch(Request $request, array $parameters = array())
     {
-        foreach ($parameters as $key => $value) {
-            if (null !== $value) {
+        foreach ($parameters as $key => $regex) {
+            if (null !== $regex) {
                 $getter = sprintf(
                     'get%s',
                     Inflector::classify($key)
@@ -73,7 +73,7 @@ class RequestRuleAssessor extends AbstractRuleAssessor
                     array()
                 );
 
-                return $requestValue === $value;
+                return 1 === preg_match('/' . $regex . '/', $requestValue);
             }
         }
     }

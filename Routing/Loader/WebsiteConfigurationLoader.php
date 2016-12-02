@@ -55,8 +55,7 @@ class WebsiteConfigurationLoader extends Loader
         $websiteName = $this->getMatchingWebsite();
         $routes = new RouteCollection();
 
-        if (false !== $websiteName) {
-
+        if (false !== $websiteName ) {
             $websiteRouteConfiguration = $this->websitesConfiguration[$websiteName]['routes'];
 
             foreach ($websiteRouteConfiguration as $routeName => $config) {
@@ -111,7 +110,9 @@ class WebsiteConfigurationLoader extends Loader
      */
     private function match($website)
     {
-        $request = $this->requestStack->getCurrentRequest();
+        if (null === $request = $this->requestStack->getCurrentRequest()) {
+            return false; // this loader has no meaning when not in the context of a http request (debug:router should not show any routes)
+        }
         foreach ($website['rules'] as $rule) {
             foreach ($rule as $alias => $parameters) {
                 if (!$this->ruleAssessorManager->match($alias, $request, $parameters)) {

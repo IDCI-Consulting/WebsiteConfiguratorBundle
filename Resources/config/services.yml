@@ -40,6 +40,15 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    idci_website_configurator.event_subscriber.theme_template:
+        class: IDCI\Bundle\WebsiteConfiguratorBundle\EventSubscriber\ThemeTemplateEventSubscriber
+        arguments:
+            - @annotation_reader
+            - @templating
+            - @idci_website_configurator.website_manager
+        tags:
+            - { name: kernel.event_subscriber }
+
     # Twig
     idci_website_configurator.twig.website_extension:
         class: IDCI\Bundle\WebsiteConfiguratorBundle\Twig\WebsiteTwigExtension

@@ -30,6 +30,7 @@ class IDCIWebsiteConfiguratorExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         $loader->load('rule_assessors.yml');
+        $loader->load('parameters.yml');
 
         $container->setParameter('idci_website_configurator.configuration.websites', $config['websites']);
     }

@@ -66,7 +66,7 @@ class WebsiteEventSubscriber implements EventSubscriberInterface
         $request = $event->getRequest();
         $website   = $this->websiteManager->guessWebsite($request);
 
-        if (null !== $website) {
+        if (null !== $website && null !== $website->getThemePath()) {
             // Add website theme path to twig loader
             $this->twigLoader->addPath(
                 $website->getThemeTemplatePath(),

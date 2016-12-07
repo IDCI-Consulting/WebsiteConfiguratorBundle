@@ -21,38 +21,39 @@ class RequestRuleAssessor extends AbstractRuleAssessor
     {
         $resolver
             ->setDefaults(array(
-                'client_ips'     => null,
-                'client_ip'      => null,
-                'script_name'    => null,
-                'path_info'      => null,
                 'base_path'      => null,
                 'base_url'       => null,
-                'scheme'         => null,
-                'port'           => null,
-                'http_host'      => null,
-                'request_format' => null,
+                'charsets'       => null,
+                'client_ip'      => null,
+                'client_ips'     => null,
                 'content_type'   => null,
                 'default_locale' => null,
-                'locale'         => null,
+                'http_host'      => null,
                 'languages'      => null,
-                'charsets'       => null,
-
+                'locale'         => null,
+                'path_info'      => null,
+                'port'           => null,
+                'request_format' => null,
+                'scheme'         => null,
+                'script_name'    => null,
+                'uri'            => null,
             ))
-            ->setAllowedTypes('client_ips',     array('null', 'array'))
-            ->setAllowedTypes('client_ip',      array('null', 'string'))
-            ->setAllowedTypes('script_name',    array('null', 'string'))
-            ->setAllowedTypes('path_info',      array('null', 'string'))
             ->setAllowedTypes('base_path',      array('null', 'string'))
             ->setAllowedTypes('base_url',       array('null', 'string'))
-            ->setAllowedTypes('scheme',         array('null', 'string'))
-            ->setAllowedTypes('port',           array('null', 'string'))
-            ->setAllowedTypes('http_host',      array('null', 'string'))
-            ->setAllowedTypes('request_format', array('null', 'string'))
+            ->setAllowedTypes('charsets',       array('null', 'array'))
+            ->setAllowedTypes('client_ip',      array('null', 'string'))
+            ->setAllowedTypes('client_ips',     array('null', 'array'))
             ->setAllowedTypes('content_type',   array('null', 'string'))
             ->setAllowedTypes('default_locale', array('null', 'string'))
-            ->setAllowedTypes('locale',         array('null', 'string'))
+            ->setAllowedTypes('http_host',      array('null', 'string'))
             ->setAllowedTypes('languages',      array('null', 'array'))
-            ->setAllowedTypes('charsets',       array('null', 'array'))
+            ->setAllowedTypes('locale',         array('null', 'string'))
+            ->setAllowedTypes('path_info',      array('null', 'string'))
+            ->setAllowedTypes('port',           array('null', 'string'))
+            ->setAllowedTypes('request_format', array('null', 'string'))
+            ->setAllowedTypes('scheme',         array('null', 'string'))
+            ->setAllowedTypes('script_name',    array('null', 'string'))
+            ->setAllowedTypes('uri',            array('null', 'string'))
         ;
     }
 
